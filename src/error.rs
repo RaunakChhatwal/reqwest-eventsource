@@ -1,7 +1,6 @@
 use core::fmt;
 use eventsource_stream::EventStreamError;
 use nom::error::Error as NomError;
-use reqwest::header::HeaderValue;
 use reqwest::Error as ReqwestError;
 use reqwest::Response;
 use reqwest::StatusCode;
@@ -35,9 +34,6 @@ pub enum Error {
     /// The HTTP Request could not be completed
     #[error(transparent)]
     Transport(ReqwestError),
-    /// The `Content-Type` returned by the server is invalid
-    #[error("Invalid header value: {0:?}")]
-    InvalidContentType(HeaderValue, Response),
     /// The status code returned by the server is invalid
     #[error("Invalid status code: {0}")]
     InvalidStatusCode(StatusCode, Response),
